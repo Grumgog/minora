@@ -6,5 +6,23 @@
 	},
 	"credits": {
 		"author": "Создано Nora.Inc"
+	},
+	"dashboard": {
+		"menu": {
+			"site": {
+				"title": "Сайт",
+				"main": "Главная",
+				"view": "Просмотр",
+				"clearCache": "Очистить кеш",
+				"find": "Поиск",
+				"newResource": "Новый ресурс",
+				"newLink": "Новая ссылка"
+			},
+			"elements": "Элементы",
+			"modules": "Модули",
+			"users": "Пользователи",
+			"tools": "Инструменты",
+			"reports": "Отчёты"
+		}
 	}
 }

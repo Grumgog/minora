@@ -6,5 +6,23 @@
 	},
 	"credits": {
 		"author": "Created by Nora.Inc"
+	},
+	"dashboard": {
+		"menu": {
+			"site": {
+				"title": "Site",
+				"main": "General",
+				"view": "View",
+				"clearCache": "Clear cache",
+				"find": "Find",
+				"newResource": "New resource",
+				"newLink": "New link"
+			},
+			"elements": "Elements",
+			"modules": "Modules",
+			"users": "Users",
+			"tools": "Tools",
+			"reports": "Reports"
+		}
 	}
 }

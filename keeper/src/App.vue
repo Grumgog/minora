@@ -5,7 +5,7 @@ import TheFooter from "@/components/TheFooter.vue";
 
 <template>
 	<div class="container">
-		<RouterView class="main-content" />
+		<RouterView />
 		<TheFooter class="footer" />
 	</div>
 </template>
@@ -15,9 +15,5 @@ import TheFooter from "@/components/TheFooter.vue";
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-}
-
-.main-content {
-	flex-grow: 1;
 }
 </style>
