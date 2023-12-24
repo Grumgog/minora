@@ -1,0 +1,10 @@
+{
+	"login": {
+		"submit": "Войти",
+		"loginLabel": "Логин",
+		"passwordLabel": "Пароль"
+	},
+	"credits": {
+		"author": "Создано Nora.Inc"
+	}
+}

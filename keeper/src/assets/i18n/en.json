@@ -1,0 +1,10 @@
+{
+	"login": {
+		"submit": "Log in",
+		"loginLabel": "Nickname or E-mail",
+		"passwordLabel": "Password"
+	},
+	"credits": {
+		"author": "Created by Nora.Inc"
+	}
+}
