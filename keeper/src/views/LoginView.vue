@@ -24,7 +24,7 @@ const deviceDetector = useDeviceDetector();
 </script>
 
 <template>
-	<div class="container" :class="{ 'is-mobile-container': deviceDetector.isMobile() }">
+	<div class="container" :class="{ 'is-mobile-container': deviceDetector.isMobile }">
 		<form class="login-form" @submit.prevent="onsubmit">
 			<div class="field">
 				<label for="login">{{ $t("login.loginLabel") }}</label>

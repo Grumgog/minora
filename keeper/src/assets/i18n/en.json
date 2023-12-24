@@ -22,7 +22,11 @@
 			"modules": "Modules",
 			"users": "Users",
 			"tools": "Tools",
-			"reports": "Reports"
+			"reports": "Reports",
+			"user": {
+				"changePassword": "Change password",
+				"logOut": "Log out"
+			}
 		}
 	}
 }

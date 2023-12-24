@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import i18n from "@/i18n-app";
 import Dropdown from "primevue/dropdown";
 import { ref } from "vue";
 
