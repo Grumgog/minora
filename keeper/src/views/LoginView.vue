@@ -4,6 +4,7 @@ import Button from "primevue/button";
 import { ref } from "vue";
 import { useUserStore } from "@/stores/user";
 import { useRouter } from "vue-router";
+import { useDeviceDetector } from "@/stores/device-detector";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -18,10 +19,12 @@ function onsubmit() {
 	console.log("to cms~");
 	router.push("/");
 }
+
+const deviceDetector = useDeviceDetector();
 </script>
 
 <template>
-	<div class="container">
+	<div class="container" :class="{ 'is-mobile-container': deviceDetector.isMobile()}">
 		<form class="login-form" @submit.prevent="onsubmit">
 			<div class="field">
 				<label for="login">{{ $t("login.loginLabel") }}</label>
@@ -42,6 +45,10 @@ function onsubmit() {
 	display: grid;
 	grid-template-columns: 2rem auto 1fr;
 	background-image: url("@/assets/img/login-background.jpg");
+}
+
+.is-mobile-container {
+	grid-template-columns: 1fr auto 1fr;
 }
 
 .login-form {
