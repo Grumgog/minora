@@ -1,0 +1,30 @@
+basePath: /api
+definitions:
+  main.Sample:
+    properties:
+      id:
+        type: integer
+      login:
+        type: string
+      lorem:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: CMS с сервером на языке программирования GO
+  title: keeper cms server
+  version: "0.1"
+paths:
+  /sample:
+    get:
+      description: return sample data as json.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Sample'
+      summary: return sample data from server
+swagger: "2.0"
