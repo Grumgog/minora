@@ -4,16 +4,21 @@ import TheMenubar from "@/components/TheMenubar.vue";
 
 <template>
 	<div class="main-content">
-		<TheMenubar />
-		<header>HEADER</header>
+		<header class="sticky">
+			<TheMenubar />
+		</header>
 		<main>
 			<RouterView />
 		</main>
-		<footer>footer</footer>
 	</div>
 </template>
 
 <style scoped>
+.sticky {
+	position: sticky;
+	top: 0;
+}
+
 .main-content {
 	flex-grow: 1;
 }

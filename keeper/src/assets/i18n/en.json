@@ -28,5 +28,12 @@
 				"logOut": "Log out"
 			}
 		}
+	},
+	"lastUser": {
+		"title": "Last users",
+		"login": "Login",
+		"lastLogin": "Last login date",
+		"lastActionDate": "Last action date",
+		"lastAction": "Last action"
 	}
 }

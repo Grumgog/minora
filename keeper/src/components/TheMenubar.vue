@@ -85,13 +85,14 @@ function initMenu(context: { userLogin: string }): Array<MenuItem> {
 </template>
 
 <style scoped lang="scss">
+
 @media screen and (min-width: 960px) {
 	.last-item-to-right :deep(.p-menubar-root-list > li.p-menuitem:last-child) {
-	position: absolute;
-	right: 1rem;
-	.p-submenu-list {
-		transform: translateX(-65px);
+		position: absolute;
+		right: 1rem;
+		.p-submenu-list {
+			transform: translateX(-65px);
+		}
 	}
-}
 }
 </style>

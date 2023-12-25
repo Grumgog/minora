@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import Card from "primevue/card";
+import LastUserInfo from "@/components/LastUserInfo.vue";
 </script>
 
 <template>
-	<Card>
-		<template #header></template>
-		<template #content></template>
-	</Card>
+	<div class="container">
+		<div class="debug-under-construction">PLACEHOLDER</div>
+		<LastUserInfo />
+		<DIV class="debug-under-construction">PLACEHOLDER</DIV>
+	</div>
 </template>
 
-<style></style>
+<style scoped>
+.container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+}
+</style>

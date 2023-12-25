@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import LocaleSelector from "./LocaleSelector.vue";
+import TheVersion from "./TheVersion.vue";
 </script>
 
 <template>
 	<div class="footer-container">
 		<div>{{ $t("credits.author") }}</div>
 		<LocaleSelector />
+		<TheVersion />
 	</div>
 </template>
 

@@ -1,0 +1,11 @@
+.debug-under-construction {
+	$yellow: gold;
+	$black: black;
+	background: repeating-linear-gradient(45deg, $black, $black 20px, $yellow 20px, $yellow 40px);
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid black;
+	border-radius: 1rem;
+}
