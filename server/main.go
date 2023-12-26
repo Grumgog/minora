@@ -21,8 +21,8 @@ import (
 // @BasePath /api
 func main() {
 	r := gin.Default()
-	routes.CreateRouter()
 	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	routes.AddRoutes(r)
 	r.GET("/ping", func(c *gin.Context) {
 		fmt.Println("we can ping!")
 		c.JSON(http.StatusOK, gin.H{

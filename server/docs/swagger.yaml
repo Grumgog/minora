@@ -9,6 +9,50 @@ definitions:
       lorem:
         type: string
     type: object
+  request.LoginRequest:
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+    required:
+    - login
+    - password
+    type: object
+  response.Action:
+    enum:
+    - READ
+    - WRITE
+    - UPDATE
+    - CREATE_RESOURCE
+    type: string
+    x-enum-varnames:
+    - READ
+    - WRITE
+    - UPDATE
+    - CREATE_RESOURCE
+  response.LoginInfo:
+    properties:
+      createdAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      lastAction:
+        $ref: '#/definitions/response.Action'
+      lastActionAt:
+        type: string
+      lastLogin:
+        type: string
+      username:
+        type: string
+    required:
+    - createdAt
+    - email
+    - id
+    - username
+    type: object
 host: localhost:8080
 info:
   contact: {}
@@ -16,6 +60,24 @@ info:
   title: keeper cms server
   version: "0.1"
 paths:
+  /auth/login:
+    post:
+      description: Проводит авторизацию на сервере и возвращает информацию о пользователе.
+      parameters:
+      - description: jfjf
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.LoginRequest'
+      produces:
+      - aplication/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.LoginInfo'
+      summary: авторизирует пользователя.
   /sample:
     get:
       description: return sample data as json.

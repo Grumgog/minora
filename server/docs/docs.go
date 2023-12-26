@@ -15,6 +15,34 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/auth/login": {
+            "post": {
+                "description": "Проводит авторизацию на сервере и возвращает информацию о пользователе.",
+                "produces": [
+                    "aplication/json"
+                ],
+                "summary": "авторизирует пользователя.",
+                "parameters": [
+                    {
+                        "description": "jfjf",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.LoginInfo"
+                        }
+                    }
+                }
+            }
+        },
         "/sample": {
             "get": {
                 "description": "return sample data as json.",
@@ -44,6 +72,68 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "lorem": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.LoginRequest": {
+            "type": "object",
+            "required": [
+                "login",
+                "password"
+            ],
+            "properties": {
+                "login": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Action": {
+            "type": "string",
+            "enum": [
+                "READ",
+                "WRITE",
+                "UPDATE",
+                "CREATE_RESOURCE"
+            ],
+            "x-enum-varnames": [
+                "READ",
+                "WRITE",
+                "UPDATE",
+                "CREATE_RESOURCE"
+            ]
+        },
+        "response.LoginInfo": {
+            "type": "object",
+            "required": [
+                "createdAt",
+                "email",
+                "id",
+                "username"
+            ],
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lastAction": {
+                    "$ref": "#/definitions/response.Action"
+                },
+                "lastActionAt": {
+                    "type": "string"
+                },
+                "lastLogin": {
+                    "type": "string"
+                },
+                "username": {
                     "type": "string"
                 }
             }

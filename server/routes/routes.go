@@ -1,7 +1,7 @@
 package routes
 
-import "fmt"
+import "github.com/gin-gonic/gin"
 
-func CreateRouter() {
-	fmt.Println("texst")
+func AddRoutes(engine *gin.Engine) {
+	AddAuthRoutes(engine)
 }
