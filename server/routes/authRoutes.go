@@ -9,15 +9,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func AddAuthRoutes(engine *gin.Engine) {
-	engine.POST("/api/auth/login", Login)
+func AddAuthRoutes(routeGroup *gin.RouterGroup) {
+	auth := routeGroup.Group("/auth")
+	auth.POST("/login", Login)
 }
 
 // Login godoc
-// @summary авторизирует пользователя.
+// @summary Авторизирует пользователя.
 // @description Проводит авторизацию на сервере и возвращает информацию о пользователе.
+// @tags auth
 // @produce aplication/json
-// @param request body request.LoginRequest true "jfjf"
+// @param request body request.LoginRequest true "Параметры аунтификации"
 // @success 200 {object} response.LoginInfo
 // @Router /auth/login [post]
 func Login(c *gin.Context) {

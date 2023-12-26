@@ -21,10 +21,13 @@ const docTemplate = `{
                 "produces": [
                     "aplication/json"
                 ],
-                "summary": "авторизирует пользователя.",
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Авторизирует пользователя.",
                 "parameters": [
                     {
-                        "description": "jfjf",
+                        "description": "Параметры аунтификации",
                         "name": "request",
                         "in": "body",
                         "required": true,
