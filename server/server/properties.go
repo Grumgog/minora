@@ -2,18 +2,22 @@ package server
 
 import (
 	"encoding/json"
-	"fmt"
 	"keeper/utils"
 	"os"
 )
 
 type Properties struct {
+	DB   DBProperties `json:"db"`
+	Port string       `json:"port"`
+	Mode string       `json:"mode"`
+}
+
+type DBProperties struct {
 	DBUser     string `json:"dbuser"`
 	DBPassword string `json:"dbpassword"`
 	DBName     string `json:"dbname"`
 	DBHost     string `json:"dbhost"`
 	DBPort     string `json:"dbport"`
-	Mode       string `json:"mode"`
 }
 
 var serverProperties *Properties = nil
@@ -32,6 +36,5 @@ func readAndSaveProperties() Properties {
 	utils.HandleErrorWithPanic(err)
 	unmarshalerr := json.Unmarshal(data, &serverProperties)
 	utils.HandleErrorWithPanic(unmarshalerr)
-	fmt.Println(*serverProperties)
 	return *serverProperties
 }
