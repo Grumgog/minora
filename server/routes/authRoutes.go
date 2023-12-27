@@ -2,9 +2,8 @@ package routes
 
 import (
 	"keeper/data/request"
-	"keeper/data/response"
+	"keeper/handler"
 	"net/http"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,6 +11,7 @@ import (
 func AddAuthRoutes(routeGroup *gin.RouterGroup) {
 	auth := routeGroup.Group("/auth")
 	auth.POST("/login", Login)
+	auth.POST("/change-password", ChangePassword)
 }
 
 // Login godoc
@@ -29,14 +29,19 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	var data = response.LoginInfo{
-		Id:           0,
-		Username:     "Admin",
-		Email:        "admin@admin",
-		CreatedAt:    time.Now(),
-		LastLogin:    time.Now(),
-		LastActionAt: time.Now(),
-		LastAction:   response.Action(response.READ),
-	}
-	c.JSON(http.StatusOK, data)
+	response := handler.HandleAuth(login)
+
+	c.JSON(http.StatusOK, response)
+}
+
+// ChangePassword godoc
+// @summary Меняет пароль для пользователя
+// @description Меняет пароль по запросу пользователя
+// @tags auth
+// @produce aplication/json
+// @param request body request.LoginRequest true "Параметры смены пароля"
+// @success 200 {object} response.LoginInfo
+// @Router /auth/change-password [post]
+func ChangePassword(c *gin.Context) {
+
 }

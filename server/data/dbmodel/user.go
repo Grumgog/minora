@@ -8,10 +8,10 @@ import (
 
 type User struct {
 	gorm.Model
-	ID                        uint `gorm:"primaryKey;autoIncrement:true"`
-	Username                  string
+	ID                        uint   `gorm:"primaryKey;autoIncrement:true"`
+	Username                  string `gorm:"unique"`
 	PasswordHash              string
-	Email                     string
+	Email                     string `gorm:"unique"`
 	CreatedAt                 time.Time
 	LastLogin                 time.Time
 	LastActionAt              time.Time
