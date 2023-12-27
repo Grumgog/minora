@@ -6,8 +6,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func HandleError(c *gin.Context, err error) {
+func HandleErrorWithInternalServerError(c *gin.Context, err error) {
 	if err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
+	}
+}
+
+func HandleErrorWithPanic(err error) {
+	if err != nil {
+		panic(err.Error())
 	}
 }

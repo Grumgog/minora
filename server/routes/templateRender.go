@@ -19,12 +19,12 @@ func renderTemplateProcessing(c *gin.Context) {
 
 	switch ext {
 	case ".html":
-		template := renderTemplate(urlPath)
+		//template := renderTemplate(urlPath)
 		break
 	case ".css":
 	case ".js":
 		data, err := os.ReadFile(urlPath)
-		utils.HandleError(c, err)
+		utils.HandleErrorWithInternalServerError(c, err)
 		c.Writer.Write(data)
 	}
 

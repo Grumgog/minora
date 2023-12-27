@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"keeper/dbcontext"
 	"keeper/routes"
 
 	_ "keeper/docs"
@@ -20,6 +21,7 @@ import (
 // @host localhost:8080
 // @BasePath /api
 func main() {
+	dbcontext.Connect()
 	r := gin.Default()
 	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	routes.AddRoutes(r)
