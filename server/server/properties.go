@@ -1,7 +1,12 @@
 package server
 
 import (
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+	"crypto/x509"
 	"encoding/json"
+	"errors"
 	"keeper/utils"
 	"os"
 )
@@ -29,6 +34,24 @@ func GetServerProperties() Properties {
 	} else {
 		return *serverProperties
 	}
+}
+
+func GetServerSecret() (*ecdsa.PrivateKey, error) {
+	secret, exist := os.LookupEnv("serverSecret")
+	if !exist {
+		privateKey, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+		if err != nil {
+			return nil, errors.New("Can't generate server secret")
+		}
+		keyBytes, err := x509.MarshalECPrivateKey(privateKey)
+		if err != nil {
+			return nil, errors.New("Can't save server secret")
+		}
+		os.Setenv("serverSecret", string(keyBytes))
+		return privateKey, nil
+	}
+	privateKey, err := x509.ParseECPrivateKey([]byte(secret))
+	return privateKey, err
 }
 
 func readAndSaveProperties() Properties {

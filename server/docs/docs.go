@@ -15,6 +15,37 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/auth/change-password": {
+            "post": {
+                "description": "Меняет пароль по запросу пользователя",
+                "produces": [
+                    "aplication/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Меняет пароль для пользователя",
+                "parameters": [
+                    {
+                        "description": "Параметры смены пароля",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.LoginInfo"
+                        }
+                    }
+                }
+            }
+        },
         "/auth/login": {
             "post": {
                 "description": "Проводит авторизацию на сервере и возвращает информацию о пользователе.",
@@ -82,10 +113,14 @@ const docTemplate = `{
         "request.LoginRequest": {
             "type": "object",
             "required": [
+                "isRemember",
                 "login",
                 "password"
             ],
             "properties": {
+                "isRemember": {
+                    "type": "boolean"
+                },
                 "login": {
                     "type": "string"
                 },
@@ -94,46 +129,14 @@ const docTemplate = `{
                 }
             }
         },
-        "response.Action": {
-            "type": "string",
-            "enum": [
-                "READ",
-                "WRITE",
-                "UPDATE",
-                "CREATE_RESOURCE"
-            ],
-            "x-enum-varnames": [
-                "READ",
-                "WRITE",
-                "UPDATE",
-                "CREATE_RESOURCE"
-            ]
-        },
         "response.LoginInfo": {
             "type": "object",
             "required": [
-                "createdAt",
-                "email",
-                "id",
+                "token",
                 "username"
             ],
             "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "lastAction": {
-                    "$ref": "#/definitions/response.Action"
-                },
-                "lastActionAt": {
-                    "type": "string"
-                },
-                "lastLogin": {
+                "token": {
                     "type": "string"
                 },
                 "username": {

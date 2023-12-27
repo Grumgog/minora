@@ -3,6 +3,7 @@ package routes
 import (
 	"keeper/data/request"
 	"keeper/handler"
+	"keeper/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -29,7 +30,11 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	response := handler.HandleAuth(login)
+	response, err := handler.HandleAuth(login)
+	if err != nil {
+		utils.HandleErrorWithInternalServerError(c, err)
+		return
+	}
 
 	c.JSON(http.StatusOK, response)
 }

@@ -11,46 +11,25 @@ definitions:
     type: object
   request.LoginRequest:
     properties:
+      isRemember:
+        type: boolean
       login:
         type: string
       password:
         type: string
     required:
+    - isRemember
     - login
     - password
     type: object
-  response.Action:
-    enum:
-    - READ
-    - WRITE
-    - UPDATE
-    - CREATE_RESOURCE
-    type: string
-    x-enum-varnames:
-    - READ
-    - WRITE
-    - UPDATE
-    - CREATE_RESOURCE
   response.LoginInfo:
     properties:
-      createdAt:
-        type: string
-      email:
-        type: string
-      id:
-        type: integer
-      lastAction:
-        $ref: '#/definitions/response.Action'
-      lastActionAt:
-        type: string
-      lastLogin:
+      token:
         type: string
       username:
         type: string
     required:
-    - createdAt
-    - email
-    - id
+    - token
     - username
     type: object
 host: localhost:8080
@@ -60,6 +39,26 @@ info:
   title: keeper cms server
   version: "0.1"
 paths:
+  /auth/change-password:
+    post:
+      description: Меняет пароль по запросу пользователя
+      parameters:
+      - description: Параметры смены пароля
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.LoginRequest'
+      produces:
+      - aplication/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.LoginInfo'
+      summary: Меняет пароль для пользователя
+      tags:
+      - auth
   /auth/login:
     post:
       description: Проводит авторизацию на сервере и возвращает информацию о пользователе.
