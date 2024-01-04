@@ -44,7 +44,10 @@ const deviceDetector = useDeviceDetector();
 .container {
 	display: grid;
 	grid-template-columns: 2rem auto 1fr;
-	background-image: url("@/assets/img/login-background.jpg");
+	background-image: url("/background.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .is-mobile-container {
@@ -57,7 +60,6 @@ const deviceDetector = useDeviceDetector();
 	grid-column: 2/3;
 	padding: 2rem;
 	display: flex;
-	justify-items: center;
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
