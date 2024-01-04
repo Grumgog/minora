@@ -28,9 +28,9 @@ func GenerateJWTToken(ttl time.Duration, payload interface{}, JWTSectret *ecdsa.
 		claims["exp"] = time.Now().Add(ttl)
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	jwt, err := token.SignedString(JWTSectret)
+	jwt, err := token.SignedString([]byte("server secret key"))
 	HandleErrorWithPanic(err)
 
 	return jwt
