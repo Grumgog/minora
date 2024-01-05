@@ -6,7 +6,7 @@ import LastUserInfo from "@/components/LastUserInfo.vue";
 	<div class="container">
 		<div class="debug-under-construction">PLACEHOLDER</div>
 		<LastUserInfo />
-		<DIV class="debug-under-construction">PLACEHOLDER</DIV>
+		<div class="debug-under-construction">PLACEHOLDER</div>
 	</div>
 </template>
 

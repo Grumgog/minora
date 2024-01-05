@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import MainView from "../views/MainView.vue";
-import LoginView from "../views/LoginView.vue";
+import MainView from "@/views/MainView.vue";
+import LoginView from "@/views/LoginView.vue";
+import UserView from "@/views/UserView.vue";
+import UsersView from "@/views/UsersView.vue";
 import { useUserStore } from "@/stores/user";
 import DashboardView from "@/views/DashboardView.vue";
 
@@ -16,6 +18,16 @@ const router = createRouter({
 					path: "",
 					name: "dashboard",
 					component: DashboardView,
+				},
+				{
+					path: "/users",
+					name: "users",
+					component: UsersView,
+				},
+				{
+					path: "/user/:login",
+					name: "user",
+					component: UserView,
 				},
 			],
 		},
@@ -36,10 +48,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-	const userStore = useUserStore();
-	if (!userStore.isLogined && to.name !== "login") {
-		return { name: "login" };
-	}
+	//const userStore = useUserStore();
+	//if (!userStore.isLogined && to.name !== "login") {
+	//	return { name: "login" };
+	//}
 });
 
 export default router;

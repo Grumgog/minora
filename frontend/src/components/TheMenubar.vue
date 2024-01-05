@@ -3,7 +3,9 @@ import { useI18n } from "vue-i18n";
 import { ref, watch, type Ref } from "vue";
 import type { MenuItem } from "primevue/menuitem";
 import { useUserStore } from "@/stores/user";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const { t, locale } = useI18n();
 const user = useUserStore();
 const items: Ref<any> = ref(initMenu({ userLogin: user.userLogin }));
@@ -55,6 +57,7 @@ function initMenu(context: { userLogin: string }): Array<MenuItem> {
 		{
 			label: t("dashboard.menu.users"),
 			icon: "pi pi-users",
+			url: "/users",
 		},
 		{
 			label: t("dashboard.menu.tools"),
@@ -85,7 +88,6 @@ function initMenu(context: { userLogin: string }): Array<MenuItem> {
 </template>
 
 <style scoped lang="scss">
-
 @media screen and (min-width: 960px) {
 	.last-item-to-right :deep(.p-menubar-root-list > li.p-menuitem:last-child) {
 		position: absolute;
