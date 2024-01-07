@@ -9,7 +9,7 @@ const isLoading = ref(false);
 async function loadData() {
 	try {
 		isLoading.value = true;
-		data.value = await users.getUsers()
+		data.value = await users.getUsers();
 	} finally {
 		isLoading.value = false;
 	}

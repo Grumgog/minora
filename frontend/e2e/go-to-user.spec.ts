@@ -5,7 +5,7 @@ test("go to user", async ({ page }) => {
 	await page.goto("/");
 
 	// Ввводим данные для входа
-	await page.getByRole('cell').nth(0).dblclick();
+	await page.getByRole("cell").nth(0).dblclick();
 
 	// Должно перенести на базовую страницу
 	await expect(page).toHaveURL("/user/Admin");

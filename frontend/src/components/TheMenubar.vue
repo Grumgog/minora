@@ -23,7 +23,7 @@ function initMenu(context: { userLogin: string }): Array<MenuItem> {
 				{
 					label: t("dashboard.menu.site.main"),
 					icon: "pi pi-th-large",
-					url: "/"
+					url: "/",
 				},
 				{
 					label: t("dashboard.menu.site.view"),

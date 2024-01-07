@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import type { UserInfo } from '@/fixtures';
-
+import type { UserInfo } from "@/fixtures";
 
 const props = defineProps({
 	data: {
-		type:  Array<UserInfo>,
-		required: false
-	}
-})
+		type: Array<UserInfo>,
+		required: false,
+	},
+});
 </script>
 
 <template>
@@ -16,6 +15,4 @@ const props = defineProps({
 	</div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -4,7 +4,7 @@ import TheMenubar from "@/components/TheMenubar.vue";
 
 <template>
 	<div class="main-content">
-		<header class="sticky">
+		<header class="header">
 			<TheMenubar />
 		</header>
 		<main>
@@ -14,9 +14,10 @@ import TheMenubar from "@/components/TheMenubar.vue";
 </template>
 
 <style scoped>
-.sticky {
-	position: sticky;
+.header {
 	top: 0;
+	z-index: 9999;
+	position: sticky;
 }
 
 .main-content {

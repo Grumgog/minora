@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import LastUserInfo from "@/components/LastUserInfo.vue";
+import TheWelcomeSplash from "@/components/TheWelcomeSplash.vue";
 </script>
 
 <template>
-	<div class="container">
-		<div class="debug-under-construction">PLACEHOLDER</div>
-		<LastUserInfo />
-		<div class="debug-under-construction">PLACEHOLDER</div>
+	<div class="flex flex-column align-items-center">
+		<TheWelcomeSplash />
+		<div class="container">
+			<div class="debug-under-construction">PLACEHOLDER</div>
+			<LastUserInfo />
+			<div class="debug-under-construction">PLACEHOLDER</div>
+		</div>
 	</div>
 </template>
 
