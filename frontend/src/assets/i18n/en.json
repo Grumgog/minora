@@ -47,5 +47,9 @@
 			"learn": "Learn Minora CMS",
 			"communityJoin": "Join to community"
 		}
+	},
+	"lastUpdateNews": {
+		"header": "Update News",
+		"noNews": "No update news"
 	}
 }

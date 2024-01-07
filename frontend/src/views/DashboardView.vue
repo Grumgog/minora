@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import LastUserInfo from "@/components/LastUserInfo.vue";
+import TheGeneralInfo from "@/components/TheGeneralInfo.vue";
+import TheUpdateNews from "@/components/TheUpdateNews.vue";
 import TheWelcomeSplash from "@/components/TheWelcomeSplash.vue";
 </script>
 
 <template>
-	<div class="flex flex-column align-items-center">
+	<div class="flex flex-column align-items-center p-2">
 		<TheWelcomeSplash />
 		<div class="container">
-			<div class="debug-under-construction">PLACEHOLDER</div>
+			<TheUpdateNews />
 			<LastUserInfo />
-			<div class="debug-under-construction">PLACEHOLDER</div>
+			<TheGeneralInfo />
 		</div>
 	</div>
 </template>

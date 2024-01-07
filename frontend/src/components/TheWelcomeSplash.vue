@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const visible = ref(true);
 
@@ -13,32 +13,32 @@ const links = ref<Array<Link>>([
 	{
 		url: "/resource/edit/main",
 		icon: "pi pi-file-edit",
-		text: "welcomeSplash.links.editMain"
+		text: "welcomeSplash.links.editMain",
 	},
 	{
 		url: "/resources",
 		icon: "pi pi-plus",
-		text: "welcomeSplash.links.addNewResource"
+		text: "welcomeSplash.links.addNewResource",
 	},
 	{
 		url: "/parameters",
 		icon: "pi pi-cog",
-		text: "welcomeSplash.links.addNewParameter"
+		text: "welcomeSplash.links.addNewParameter",
 	},
 	{
 		url: "/resource/new",
 		icon: "pi pi-plus",
-		text: "welcomeSplash.links.addNewRecord"
+		text: "welcomeSplash.links.addNewRecord",
 	},
 	{
 		url: "http://www.example.com",
 		icon: "pi pi-search",
-		text: "welcomeSplash.links.learn"
+		text: "welcomeSplash.links.learn",
 	},
 	{
 		url: "http://www.discord.com/server/join",
 		icon: "pi pi-discord",
-		text: "welcomeSplash.links.communityJoin"
+		text: "welcomeSplash.links.communityJoin",
 	},
 ]);
 
@@ -48,15 +48,15 @@ function onCloseClick() {
 </script>
 
 <template>
-	<Panel v-if="visible" class="p-2">
+	<Panel data-testid="welcome-splash" v-if="visible" class="p-2">
 		<template #header>
 			<div class="header-container">
-				<div class="font-bold header">{{$t("welcomeSplash.header")}}</div>
+				<div class="font-bold header">{{ $t("welcomeSplash.header") }}</div>
 				<div>{{ $t("welcomeSplash.secondaryText") }}</div>
 			</div>
 		</template>
 		<template #icons>
-			<Button icon="pi pi-times" text @click="onCloseClick()"></Button>
+			<Button data-testid="welcome-splash-close" icon="pi pi-times" text @click="onCloseClick()"></Button>
 		</template>
 		<div class="section-links">
 			<div v-for="link in links" :key="link.url">
