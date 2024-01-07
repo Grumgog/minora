@@ -35,5 +35,17 @@
 		"lastLogin": "Last login date",
 		"lastActionDate": "Last action date",
 		"lastAction": "Last action"
+	},
+	"welcomeSplash": {
+		"header": "Welcome to Minora CMS",
+		"secondaryText": "There are some usefull links",
+		"links": {
+			"editMain": "Edit main page",
+			"addNewResource": "Add new resource",
+			"addNewParameter": "Add new parameter",
+			"addNewRecord": "Add new record",
+			"learn": "Learn Minora CMS",
+			"communityJoin": "Join to community"
+		}
 	}
 }

@@ -13,32 +13,32 @@ const links = ref<Array<Link>>([
 	{
 		url: "/resource/edit/main",
 		icon: "pi pi-file-edit",
-		text: "Отредактируйте главную страницу"
+		text: "welcomeSplash.links.editMain"
 	},
 	{
 		url: "/resources",
 		icon: "pi pi-plus",
-		text: "Добавте другие страницы"
+		text: "welcomeSplash.links.addNewResource"
 	},
 	{
 		url: "/parameters",
 		icon: "pi pi-cog",
-		text: "Добавте новые параметры"
+		text: "welcomeSplash.links.addNewParameter"
 	},
 	{
 		url: "/resource/new",
 		icon: "pi pi-plus",
-		text: "Добавить новую запись"
+		text: "welcomeSplash.links.addNewRecord"
 	},
 	{
 		url: "http://www.example.com",
 		icon: "pi pi-search",
-		text: "Изучите работу с CMS Минора"
+		text: "welcomeSplash.links.learn"
 	},
 	{
 		url: "http://www.discord.com/server/join",
 		icon: "pi pi-discord",
-		text: "Присоединиться к серверу сообщества"
+		text: "welcomeSplash.links.communityJoin"
 	},
 ]);
 
@@ -51,8 +51,8 @@ function onCloseClick() {
 	<Panel v-if="visible" class="p-2">
 		<template #header>
 			<div class="header-container">
-				<div class="font-bold header">Добро пожаловать в Минору!</div>
-				<div>Здесь вы можете найти несколько полезных ссылок</div>
+				<div class="font-bold header">{{$t("welcomeSplash.header")}}</div>
+				<div>{{ $t("welcomeSplash.secondaryText") }}</div>
 			</div>
 		</template>
 		<template #icons>
@@ -61,7 +61,7 @@ function onCloseClick() {
 		<div class="section-links">
 			<div v-for="link in links" :key="link.url">
 				<span class="p-1" :class="link.icon"></span>
-				<a :href="link.url">{{ link.text }}</a>
+				<a :href="link.url">{{ $t(link.text) }}</a>
 			</div>
 		</div>
 	</Panel>
