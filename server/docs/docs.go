@@ -100,6 +100,34 @@ const docTemplate = `{
                 }
             }
         },
+        "/parameter/new": {
+            "post": {
+                "description": "Создаёт параметр.",
+                "produces": [
+                    "aplication/json"
+                ],
+                "tags": [
+                    "parameter"
+                ],
+                "summary": "Создаёт параметр для редактирования в шаблоне.",
+                "parameters": [
+                    {
+                        "description": "Свойства создаваемого шаблона",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreateParameterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/sample": {
             "get": {
                 "description": "return sample data as json.",
@@ -129,6 +157,25 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "lorem": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.CreateParameterRequest": {
+            "type": "object",
+            "required": [
+                "isDefault",
+                "name",
+                "parameterType"
+            ],
+            "properties": {
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameterType": {
                     "type": "string"
                 }
             }

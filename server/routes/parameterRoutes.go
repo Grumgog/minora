@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"keeper/data/request"
 	"keeper/handler"
 	"keeper/utils"
 	"net/http"
@@ -11,6 +12,7 @@ import (
 func AddParameterRoutes(routeGroup *gin.RouterGroup) {
 	parameter := routeGroup.Group("/parameter")
 	parameter.GET("/", GetParameters)
+	parameter.POST("/new", CreateParameter)
 }
 
 // GetParameters godoc
@@ -27,4 +29,18 @@ func GetParameters(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, parameter)
+}
+
+// CreateParameter godoc
+// @summary Создаёт параметр для редактирования в шаблоне.
+// @description Создаёт параметр.
+// @tags parameter
+// @produce aplication/json
+// @param request body request.CreateParameterRequest true "Свойства создаваемого шаблона"
+// @success 200
+// @Router /parameter/new [post]
+func CreateParameter(c *gin.Context) {
+	var requestData request.CreateParameterRequest
+	c.BindJSON(&requestData)
+	handler.ParameterCreateHandler(requestData.Name, requestData.ParameterType, requestData.IsDefault)
 }

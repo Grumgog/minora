@@ -27,3 +27,9 @@ func ParameterGetListHandler() ([]response.Parameter, error) {
 
 	return nil, err
 }
+
+func ParameterCreateHandler(name string, paramType string, isDefault bool) {
+	db := dbcontext.GetDBContext()
+
+	db.Parameter.AddParameter(name, paramType, isDefault)
+}
