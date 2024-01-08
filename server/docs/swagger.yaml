@@ -32,6 +32,28 @@ definitions:
     - token
     - username
     type: object
+  response.Parameter:
+    properties:
+      defaultValue:
+        type: string
+      id:
+        type: integer
+      isDefault:
+        type: boolean
+      isSystem:
+        type: boolean
+      name:
+        type: string
+      parameterType:
+        type: string
+    required:
+    - defaultValue
+    - id
+    - isDefault
+    - isSystem
+    - name
+    - parameterType
+    type: object
 host: localhost:8080
 info:
   contact: {}
@@ -79,6 +101,22 @@ paths:
       summary: Авторизирует пользователя.
       tags:
       - auth
+  /parameter:
+    get:
+      description: Возвращает массив параметров, предназначеных для использования
+        в шаблонах.
+      produces:
+      - aplication/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/response.Parameter'
+            type: array
+      summary: Возвращает все параметры для использования в шаблонах.
+      tags:
+      - parameter
   /sample:
     get:
       description: return sample data as json.

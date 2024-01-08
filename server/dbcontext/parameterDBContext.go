@@ -27,3 +27,9 @@ func (context *ParameterDBContext) AddSystemParameter(name string, parameterType
 		IsSystem:      true,
 	})
 }
+
+func (context *ParameterDBContext) GetParameters() ([]dbmodel.Parameter, error) {
+	var parameters []dbmodel.Parameter
+	result := context.DB.Find(&parameters)
+	return parameters, result.Error
+}

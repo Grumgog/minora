@@ -18,7 +18,7 @@ func InitDB() {
 	}
 
 	db.User.CreateUserByModel(&dbmodel.User{
-		Username:                  "Admin",
+		Username:                  "admin",
 		PasswordHash:              utils.HashPassword("admin"),
 		IsSystem:                  true,
 		IsChangePasswordNextLogin: true,

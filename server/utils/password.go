@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"crypto/ecdsa"
 	"fmt"
 	"time"
 
@@ -19,7 +18,7 @@ func CompareHashPassword(passwordHash string, candidatePassword string) bool {
 	return bcrypt.CompareHashAndPassword([]byte(passwordHash), []byte(candidatePassword)) == nil
 }
 
-func GenerateJWTToken(ttl time.Duration, payload interface{}, JWTSectret *ecdsa.PrivateKey) string {
+func GenerateJWTToken(ttl time.Duration, payload interface{}, JWTSectret string) string {
 	claims := jwt.MapClaims{}
 	claims["iat"] = time.Now().Unix()
 	claims["sub"] = payload
@@ -30,7 +29,7 @@ func GenerateJWTToken(ttl time.Duration, payload interface{}, JWTSectret *ecdsa.
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	jwt, err := token.SignedString([]byte("server secret key"))
+	jwt, err := token.SignedString([]byte(JWTSectret))
 	HandleErrorWithPanic(err)
 
 	return jwt

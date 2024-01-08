@@ -22,10 +22,7 @@ func HandleAuth(login request.LoginRequest) (*response.LoginInfo, error) {
 		return nil, errors.New("Invalid password of login.")
 	}
 
-	secret, secret_err := server.GetServerSecret()
-	if secret_err != nil {
-		return nil, errors.New("Server Internal Error")
-	}
+	secret := server.GetServerSecret()
 
 	var duration time.Duration = time.Duration(0)
 	if !login.IsRemember {

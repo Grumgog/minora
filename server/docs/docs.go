@@ -77,6 +77,29 @@ const docTemplate = `{
                 }
             }
         },
+        "/parameter": {
+            "get": {
+                "description": "Возвращает массив параметров, предназначеных для использования в шаблонах.",
+                "produces": [
+                    "aplication/json"
+                ],
+                "tags": [
+                    "parameter"
+                ],
+                "summary": "Возвращает все параметры для использования в шаблонах.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response.Parameter"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/sample": {
             "get": {
                 "description": "return sample data as json.",
@@ -140,6 +163,37 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Parameter": {
+            "type": "object",
+            "required": [
+                "defaultValue",
+                "id",
+                "isDefault",
+                "isSystem",
+                "name",
+                "parameterType"
+            ],
+            "properties": {
+                "defaultValue": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "isSystem": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parameterType": {
                     "type": "string"
                 }
             }
