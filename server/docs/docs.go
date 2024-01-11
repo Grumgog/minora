@@ -104,7 +104,7 @@ const docTemplate = `{
             "post": {
                 "description": "Создаёт параметр.",
                 "produces": [
-                    "aplication/json"
+                    "application/json"
                 ],
                 "tags": [
                     "parameter"
@@ -128,39 +128,32 @@ const docTemplate = `{
                 }
             }
         },
-        "/sample": {
-            "get": {
-                "description": "return sample data as json.",
+        "/parameter/values": {
+            "post": {
+                "description": "Возвращает спиоск параметров для указанного шаблона, если шаблон не указан, то возвращает все параметры",
                 "produces": [
                     "application/json"
                 ],
-                "summary": "return sample data from server",
-                "responses": {
-                    "200": {
-                        "description": "OK",
+                "tags": [
+                    "parameter"
+                ],
+                "summary": "Возвращает список параметров для указанного шаблона",
+                "parameters": [
+                    {
+                        "description": "Параметры запроса на получения значений параметров",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Sample"
+                            "$ref": "#/definitions/request.GetParameterValuesRequest"
                         }
                     }
-                }
+                ],
+                "responses": {}
             }
         }
     },
     "definitions": {
-        "main.Sample": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "login": {
-                    "type": "string"
-                },
-                "lorem": {
-                    "type": "string"
-                }
-            }
-        },
         "request.CreateParameterRequest": {
             "type": "object",
             "required": [
@@ -170,12 +163,24 @@ const docTemplate = `{
             ],
             "properties": {
                 "isDefault": {
+                    "description": "Параметр является стандартным и доступен для всех шаблонов",
                     "type": "boolean"
                 },
                 "name": {
+                    "description": "Имя параметра",
                     "type": "string"
                 },
                 "parameterType": {
+                    "description": "Тип параметра",
+                    "type": "string"
+                }
+            }
+        },
+        "request.GetParameterValuesRequest": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "description": "Путь для которого запрашиваются значения параметров",
                     "type": "string"
                 }
             }
@@ -189,12 +194,15 @@ const docTemplate = `{
             ],
             "properties": {
                 "isRemember": {
+                    "description": "Необходимо ли запоминать пользователя",
                     "type": "boolean"
                 },
                 "login": {
+                    "description": "Логин пользователя",
                     "type": "string"
                 },
                 "password": {
+                    "description": "Пароль пользователя",
                     "type": "string"
                 }
             }

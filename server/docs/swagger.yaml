@@ -1,34 +1,37 @@
 basePath: /api
 definitions:
-  main.Sample:
-    properties:
-      id:
-        type: integer
-      login:
-        type: string
-      lorem:
-        type: string
-    type: object
   request.CreateParameterRequest:
     properties:
       isDefault:
+        description: Параметр является стандартным и доступен для всех шаблонов
         type: boolean
       name:
+        description: Имя параметра
         type: string
       parameterType:
+        description: Тип параметра
         type: string
     required:
     - isDefault
     - name
     - parameterType
     type: object
+  request.GetParameterValuesRequest:
+    properties:
+      path:
+        description: Путь для которого запрашиваются значения параметров
+        type: string
+    type: object
   request.LoginRequest:
     properties:
       isRemember:
+        description: Необходимо ли запоминать пользователя
         type: boolean
       login:
+        description: Логин пользователя
         type: string
       password:
+        description: Пароль пользователя
         type: string
     required:
     - isRemember
@@ -141,22 +144,28 @@ paths:
         schema:
           $ref: '#/definitions/request.CreateParameterRequest'
       produces:
-      - aplication/json
+      - application/json
       responses:
         "200":
           description: OK
       summary: Создаёт параметр для редактирования в шаблоне.
       tags:
       - parameter
-  /sample:
-    get:
-      description: return sample data as json.
+  /parameter/values:
+    post:
+      description: Возвращает спиоск параметров для указанного шаблона, если шаблон
+        не указан, то возвращает все параметры
+      parameters:
+      - description: Параметры запроса на получения значений параметров
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.GetParameterValuesRequest'
       produces:
       - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/main.Sample'
-      summary: return sample data from server
+      responses: {}
+      summary: Возвращает список параметров для указанного шаблона
+      tags:
+      - parameter
 swagger: "2.0"

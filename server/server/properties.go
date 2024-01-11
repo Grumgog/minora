@@ -9,9 +9,10 @@ import (
 )
 
 type Properties struct {
-	DB   DBProperties `json:"db"`
-	Port string       `json:"port"`
-	Mode string       `json:"mode"`
+	DB      DBProperties `json:"db"`
+	Port    string       `json:"port"`
+	Mode    string       `json:"mode"`
+	AppName string       `json:"appName"`
 }
 
 type DBProperties struct {
@@ -57,4 +58,8 @@ func readAndSaveProperties() Properties {
 	unmarshalerr := json.Unmarshal(data, &serverProperties)
 	utils.HandleErrorWithPanic(unmarshalerr)
 	return *serverProperties
+}
+
+func GetAppName() string {
+	return GetServerProperties().AppName
 }

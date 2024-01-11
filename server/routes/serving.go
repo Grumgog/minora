@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"keeper/dbcontext"
 	"net/http"
 	"strings"
 
@@ -19,9 +20,14 @@ func handlerForServing(c *gin.Context) {
 		return
 	}
 
+	if path == "/favicon.ico" {
+		c.File("./favicon.ico")
+	}
+
 	if strings.HasPrefix(path, "/static") {
 		file := strings.Replace(path, "/static", "/", 1)
 		c.File("./static" + file)
+		return
 	}
 
 	if !strings.HasSuffix(path, ".html") {
@@ -31,6 +37,22 @@ func handlerForServing(c *gin.Context) {
 	return
 }
 
-func getTemplateParameter(path string) map[string]string {
-	return map[string]string{"hello": "world"}
+type Parameters = map[string]string
+
+func getTemplateParameter(path string) Parameters {
+	templateParameter := Parameters{}
+	getSystemParameter(&templateParameter)
+	getParameterForTemplate(&templateParameter, path)
+	return templateParameter
+}
+
+func getSystemParameter(parameters *Parameters) {
+	db := dbcontext.GetDBContext()
+	for key, value := range db.ParameterValue.GetSystemParameterValues() {
+		(*parameters)[key] = value
+	}
+}
+
+func getParameterForTemplate(parameters *Parameters, template string) {
+
 }

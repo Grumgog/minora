@@ -11,9 +11,10 @@ import (
 )
 
 type DBContext struct {
-	DB        *gorm.DB
-	User      *UserDBContext
-	Parameter *ParameterDBContext
+	DB             *gorm.DB
+	User           *UserDBContext
+	Parameter      *ParameterDBContext
+	ParameterValue *ParameterValueDBContext
 }
 
 var dbContext *DBContext = nil
@@ -31,9 +32,10 @@ func Connect() {
 
 func createContext(db *gorm.DB) *DBContext {
 	return &DBContext{
-		DB:        db,
-		User:      &UserDBContext{DB: db},
-		Parameter: &ParameterDBContext{DB: db},
+		DB:             db,
+		User:           &UserDBContext{DB: db},
+		Parameter:      &ParameterDBContext{DB: db},
+		ParameterValue: &ParameterValueDBContext{DB: db},
 	}
 }
 
