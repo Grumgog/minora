@@ -5,10 +5,8 @@ import (
 	_ "minora/docs"
 	"minora/routes"
 
-	"github.com/gin-gonic/gin"
-
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/gofiber/fiber/v2"
+	fiberSwagger "github.com/swaggo/fiber-swagger"
 )
 
 // @title keeper cms server
@@ -19,8 +17,8 @@ import (
 // @BasePath /api
 func main() {
 	dbcontext.Connect()
-	r := gin.Default()
-	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	routes.AddRoutes(r)
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	app := fiber.New()
+	app.Get("/docs/*any", fiberSwagger.WrapHandler)
+	routes.AddRoutes(app)
+	app.Listen(":8080") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

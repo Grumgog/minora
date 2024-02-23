@@ -1,13 +1,15 @@
 package routes
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
-func AddCollectionRoutes(routeGroup *gin.RouterGroup) {
+func AddCollectionRoutes(routeGroup fiber.Router) {
 	collection := routeGroup.Group("/collection")
-	collection.GET("/", getCollections)
-	collection.POST("/", createCollection)
-	collection.GET("/{id}", getCollectionById)
-	collection.PATCH("/{id}", updateCollection)
+	collection.Get("/", getCollections)
+	collection.Post("/", createCollection)
+	collection.Get("/{id}", getCollectionById)
+	collection.Patch("/{id}", updateCollection)
 }
 
 // getCollections godoc
@@ -17,7 +19,8 @@ func AddCollectionRoutes(routeGroup *gin.RouterGroup) {
 // @produce aplication/json
 // @success 200 {object} response.CollectionListResponse
 // @Router /collection/ [get]
-func getCollections(c *gin.Context) {
+func getCollections(c *fiber.Ctx) error {
+	return nil
 }
 
 // getCollection godoc
@@ -28,12 +31,12 @@ func getCollections(c *gin.Context) {
 // @produce aplication/json
 // @success 200 {object} response.GetCollectionResponse
 // @Router /collection/{id} [get]
-func getCollectionById(c* gin.Context) {
-
+func getCollectionById(c *fiber.Ctx) error {
+	return nil
 }
 
-func findCollection(c* gin.Context) {
-
+func findCollection(c *fiber.Ctx) error {
+	return nil
 }
 
 // createCollections godoc
@@ -44,10 +47,12 @@ func findCollection(c* gin.Context) {
 // @produce aplication/json
 // @success 201
 // @Router /collection/ [post]
-func createCollection(c *gin.Context) {
-
+func createCollection(c *fiber.Ctx) error {
+	return nil
 }
 
 
-func updateCollection(c *gin.Context)
+func updateCollection(c *fiber.Ctx) error {
+	return nil
+}
 
