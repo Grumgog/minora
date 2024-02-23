@@ -4,13 +4,16 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
-	"keeper/utils"
+	"minora/utils"
 	"os"
+
+	"github.com/creasty/defaults"
 )
 
 type Properties struct {
 	DB   DBProperties `json:"db"`
-	Port string       `json:"port"`
+	Port string       `json:"port" default:"5200"`
+	Host string       `json:"host" default:"localhost"`
 	Mode string       `json:"mode"`
 }
 
@@ -18,8 +21,8 @@ type DBProperties struct {
 	DBUser     string `json:"dbuser"`
 	DBPassword string `json:"dbpassword"`
 	DBName     string `json:"dbname"`
-	DBHost     string `json:"dbhost"`
-	DBPort     string `json:"dbport"`
+	DBHost     string `json:"dbhost" default:"localhost"`
+	DBPort     string `json:"dbport" default:"5432"`
 }
 
 var serverProperties *Properties = nil
@@ -54,6 +57,8 @@ func GenerateSecretKey(length uint32) string {
 func readAndSaveProperties() Properties {
 	data, err := os.ReadFile("server.properties.json")
 	utils.HandleErrorWithPanic(err)
+	serverProperties = &Properties{}
+	defaults.Set(serverProperties)
 	unmarshalerr := json.Unmarshal(data, &serverProperties)
 	utils.HandleErrorWithPanic(unmarshalerr)
 	return *serverProperties

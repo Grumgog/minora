@@ -1,8 +1,8 @@
 package dbcontext
 
 import (
-	"keeper/data/dbmodel"
-	"keeper/utils"
+	"minora/data/dbmodel"
+	"minora/utils"
 	"time"
 )
 
@@ -24,11 +24,4 @@ func InitDB() {
 		IsChangePasswordNextLogin: true,
 		CreatedAt:                 time.Now(),
 	})
-
-	db.Parameter.AddSystemParameter("title", "string", true)
-	db.Parameter.AddSystemParameter("content", "string", true)
-	db.Parameter.AddSystemParameter("previewImage", "path:image", true)
-	db.Parameter.AddSystemParameter("author", "string", true)
-	db.Parameter.AddSystemParameter("creationDate", "date", true)
-	db.Parameter.AddSystemParameter("updateDate", "date", true)
 }

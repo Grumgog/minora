@@ -1,26 +1,6 @@
 basePath: /api
 definitions:
-  main.Sample:
-    properties:
-      id:
-        type: integer
-      login:
-        type: string
-      lorem:
-        type: string
-    type: object
-  request.CreateParameterRequest:
-    properties:
-      isDefault:
-        type: boolean
-      name:
-        type: string
-      parameterType:
-        type: string
-    required:
-    - isDefault
-    - name
-    - parameterType
+  request.CreateCollectionRequest:
     type: object
   request.LoginRequest:
     properties:
@@ -35,6 +15,15 @@ definitions:
     - login
     - password
     type: object
+  request.UpdateCollectionRequest:
+    properties:
+      id:
+        type: integer
+    type: object
+  response.CollectionListResponse:
+    type: object
+  response.GetCollectionResponse:
+    type: object
   response.LoginInfo:
     properties:
       token:
@@ -44,28 +33,6 @@ definitions:
     required:
     - token
     - username
-    type: object
-  response.Parameter:
-    properties:
-      defaultValue:
-        type: string
-      id:
-        type: integer
-      isDefault:
-        type: boolean
-      isSystem:
-        type: boolean
-      name:
-        type: string
-      parameterType:
-        type: string
-    required:
-    - defaultValue
-    - id
-    - isDefault
-    - isSystem
-    - name
-    - parameterType
     type: object
 host: localhost:8080
 info:
@@ -114,49 +81,70 @@ paths:
       summary: Авторизирует пользователя.
       tags:
       - auth
-  /parameter:
+  /collection/:
     get:
-      description: Возвращает массив параметров, предназначеных для использования
-        в шаблонах.
+      description: Возвращает список всех коллекций на сервере.
       produces:
       - aplication/json
       responses:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/response.Parameter'
-            type: array
-      summary: Возвращает все параметры для использования в шаблонах.
+            $ref: '#/definitions/response.CollectionListResponse'
+      summary: Возвращает список всех коллекций на сервере
       tags:
-      - parameter
-  /parameter/new:
-    post:
-      description: Создаёт параметр.
+      - collection
+    patch:
+      description: Редактирует информацию о коллекции на сервере.
       parameters:
-      - description: Свойства создаваемого шаблона
+      - description: Параметры создания коллекции
         in: body
         name: request
         required: true
         schema:
-          $ref: '#/definitions/request.CreateParameterRequest'
+          $ref: '#/definitions/request.UpdateCollectionRequest'
       produces:
       - aplication/json
       responses:
         "200":
           description: OK
-      summary: Создаёт параметр для редактирования в шаблоне.
+      summary: Редактирует коллекцию.
       tags:
-      - parameter
-  /sample:
-    get:
-      description: return sample data as json.
+      - collection
+    post:
+      description: Создаёт новую коллекцию на сервере.
+      parameters:
+      - description: Параметры создания коллекции
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateCollectionRequest'
       produces:
-      - application/json
+      - aplication/json
+      responses:
+        "201":
+          description: Created
+      summary: Создаёт коллекцию на сервере.
+      tags:
+      - collection
+  /collection/{id}:
+    get:
+      description: Возвращает коллекцию на сервере, по id.
+      parameters:
+      - description: Идентификатор коллекции
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - aplication/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Sample'
-      summary: return sample data from server
+            $ref: '#/definitions/response.GetCollectionResponse'
+      summary: Возвращает коллекцию на сервере.
+      tags:
+      - collection
 swagger: "2.0"

@@ -1,9 +1,11 @@
 package routes
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
-func AddRoutes(engine *gin.Engine) {
-	api := engine.Group("/api")
+func AddRoutes(app *fiber.App) {
+	api := app.Group("/api")
 	AddAuthRoutes(api)
-	AddParameterRoutes(api)
+	AddCollectionRoutes(api)
 }

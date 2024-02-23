@@ -1,18 +1,13 @@
 package routes
 
 import (
-	"keeper/data/request"
-	"keeper/handler"
-	"keeper/utils"
-	"net/http"
-
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
 )
 
-func AddAuthRoutes(routeGroup *gin.RouterGroup) {
-	auth := routeGroup.Group("/auth")
-	auth.POST("/login", Login)
-	auth.POST("/change-password", ChangePassword)
+func AddAuthRoutes(routeGroup fiber.Router) {
+	auth := routeGroup.Group("/api")
+	auth.Post("/login", Login)
+	auth.Post("/change-password", ChangePassword)
 }
 
 // Login godoc
@@ -23,20 +18,21 @@ func AddAuthRoutes(routeGroup *gin.RouterGroup) {
 // @param request body request.LoginRequest true "Параметры аунтификации"
 // @success 200 {object} response.LoginInfo
 // @Router /auth/login [post]
-func Login(c *gin.Context) {
-	var login request.LoginRequest
-	if c.ShouldBindJSON(&login) != nil {
-		c.AbortWithStatus(http.StatusUnauthorized)
-		return
-	}
+func Login(c *fiber.Ctx) error {
+	return nil
+	// var login request.LoginRequest
+	// if c.ShouldBindJSON(&login) != nil {
+	// 	c.AbortWithStatus(http.StatusUnauthorized)
+	// 	return
+	// }
 
-	response, err := handler.HandleAuth(login)
-	if err != nil {
-		utils.HandleErrorWithInternalServerError(c, err)
-		return
-	}
+	// response, err := handler.HandleAuth(login)
+	// if err != nil {
+	// 	utils.HandleErrorWithInternalServerError(c, err)
+	// 	return
+	// }
 
-	c.JSON(http.StatusOK, response)
+	// c.JSON(http.StatusOK, response)
 }
 
 // ChangePassword godoc
@@ -47,6 +43,7 @@ func Login(c *gin.Context) {
 // @param request body request.LoginRequest true "Параметры смены пароля"
 // @success 200 {object} response.LoginInfo
 // @Router /auth/change-password [post]
-func ChangePassword(c *gin.Context) {
+func ChangePassword(c *fiber.Ctx) error {
+	return nil
 
 }

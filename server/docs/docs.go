@@ -77,47 +77,68 @@ const docTemplate = `{
                 }
             }
         },
-        "/parameter": {
+        "/collection/": {
             "get": {
-                "description": "Возвращает массив параметров, предназначеных для использования в шаблонах.",
+                "description": "Возвращает список всех коллекций на сервере.",
                 "produces": [
                     "aplication/json"
                 ],
                 "tags": [
-                    "parameter"
+                    "collection"
                 ],
-                "summary": "Возвращает все параметры для использования в шаблонах.",
+                "summary": "Возвращает список всех коллекций на сервере",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/response.Parameter"
-                            }
+                            "$ref": "#/definitions/response.CollectionListResponse"
                         }
                     }
                 }
-            }
-        },
-        "/parameter/new": {
+            },
             "post": {
-                "description": "Создаёт параметр.",
+                "description": "Создаёт новую коллекцию на сервере.",
                 "produces": [
                     "aplication/json"
                 ],
                 "tags": [
-                    "parameter"
+                    "collection"
                 ],
-                "summary": "Создаёт параметр для редактирования в шаблоне.",
+                "summary": "Создаёт коллекцию на сервере.",
                 "parameters": [
                     {
-                        "description": "Свойства создаваемого шаблона",
+                        "description": "Параметры создания коллекции",
                         "name": "request",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/request.CreateParameterRequest"
+                            "$ref": "#/definitions/request.CreateCollectionRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            },
+            "patch": {
+                "description": "Редактирует информацию о коллекции на сервере.",
+                "produces": [
+                    "aplication/json"
+                ],
+                "tags": [
+                    "collection"
+                ],
+                "summary": "Редактирует коллекцию.",
+                "parameters": [
+                    {
+                        "description": "Параметры создания коллекции",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.UpdateCollectionRequest"
                         }
                     }
                 ],
@@ -128,18 +149,30 @@ const docTemplate = `{
                 }
             }
         },
-        "/sample": {
+        "/collection/{id}": {
             "get": {
-                "description": "return sample data as json.",
+                "description": "Возвращает коллекцию на сервере, по id.",
                 "produces": [
-                    "application/json"
+                    "aplication/json"
                 ],
-                "summary": "return sample data from server",
+                "tags": [
+                    "collection"
+                ],
+                "summary": "Возвращает коллекцию на сервере.",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Идентификатор коллекции",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Sample"
+                            "$ref": "#/definitions/response.GetCollectionResponse"
                         }
                     }
                 }
@@ -147,38 +180,8 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "main.Sample": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "login": {
-                    "type": "string"
-                },
-                "lorem": {
-                    "type": "string"
-                }
-            }
-        },
-        "request.CreateParameterRequest": {
-            "type": "object",
-            "required": [
-                "isDefault",
-                "name",
-                "parameterType"
-            ],
-            "properties": {
-                "isDefault": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "parameterType": {
-                    "type": "string"
-                }
-            }
+        "request.CreateCollectionRequest": {
+            "type": "object"
         },
         "request.LoginRequest": {
             "type": "object",
@@ -199,6 +202,20 @@ const docTemplate = `{
                 }
             }
         },
+        "request.UpdateCollectionRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.CollectionListResponse": {
+            "type": "object"
+        },
+        "response.GetCollectionResponse": {
+            "type": "object"
+        },
         "response.LoginInfo": {
             "type": "object",
             "required": [
@@ -210,37 +227,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.Parameter": {
-            "type": "object",
-            "required": [
-                "defaultValue",
-                "id",
-                "isDefault",
-                "isSystem",
-                "name",
-                "parameterType"
-            ],
-            "properties": {
-                "defaultValue": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "isDefault": {
-                    "type": "boolean"
-                },
-                "isSystem": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "parameterType": {
                     "type": "string"
                 }
             }
