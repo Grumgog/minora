@@ -38,7 +38,7 @@ host: localhost:8080
 info:
   contact: {}
   description: CMS с сервером на языке программирования GO
-  title: keeper cms server
+  title: MinoraCMS server
   version: "0.1"
 paths:
   /auth/change-password:

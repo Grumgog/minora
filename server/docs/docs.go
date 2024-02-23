@@ -240,7 +240,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8080",
 	BasePath:         "/api",
 	Schemes:          []string{},
-	Title:            "keeper cms server",
+	Title:            "MinoraCMS server",
 	Description:      "CMS с сервером на языке программирования GO",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
