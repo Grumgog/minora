@@ -1,13 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-
-	"keeper/dbcontext"
-	_ "keeper/docs"
+	"minora/dbcontext"
+	_ "minora/docs"
+	"minora/routes"
 
 	"github.com/gin-gonic/gin"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // @title keeper cms server
@@ -19,41 +20,7 @@ import (
 func main() {
 	dbcontext.Connect()
 	r := gin.Default()
-	// r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	// routes.AddRoutes(r)
-	r.GET("/api/*any", func(c *gin.Context) {
-		fmt.Println("we can ping!")
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-	r.GET("/*any", func(c *gin.Context) {
-		fmt.Println("we can ping!")
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-	// r.GET("/api/sample", SampleData)
+	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	routes.AddRoutes(r)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
-}
-
-type Sample struct {
-	Id    int    `json:"id"`
-	Login string `json:"login"`
-	Lorem string `json:"lorem"`
-}
-
-// Sample data	godoc
-// @summary return sample data from server
-// @description return sample data as json.
-// @produce application/json
-// @success 200 {object} Sample
-// @Router /sample [get]
-func SampleData(c *gin.Context) {
-	var data = Sample{
-		Id:    1,
-		Login: "admin",
-		Lorem: "Ipsum",
-	}
-	c.JSON(http.StatusOK, data)
 }

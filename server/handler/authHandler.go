@@ -2,11 +2,11 @@ package handler
 
 import (
 	"errors"
-	"keeper/data/request"
-	"keeper/data/response"
-	"keeper/dbcontext"
-	"keeper/server"
-	"keeper/utils"
+	"minora/data/request"
+	"minora/data/response"
+	"minora/dbcontext"
+	"minora/server"
+	"minora/utils"
 	"time"
 )
 

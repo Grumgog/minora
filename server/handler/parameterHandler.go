@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"keeper/data/dbmodel"
-	"keeper/data/response"
-	"keeper/dbcontext"
-	"keeper/utils"
+	"minora/data/dbmodel"
+	"minora/data/response"
+	"minora/dbcontext"
+	"minora/utils"
 )
 
 func ParameterGetListHandler() ([]response.Parameter, error) {

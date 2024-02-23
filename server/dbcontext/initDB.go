@@ -1,8 +1,8 @@
 package dbcontext
 
 import (
-	"keeper/data/dbmodel"
-	"keeper/utils"
+	"minora/data/dbmodel"
+	"minora/utils"
 	"time"
 )
 

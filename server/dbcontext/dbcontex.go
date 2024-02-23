@@ -2,9 +2,9 @@ package dbcontext
 
 import (
 	"fmt"
-	"keeper/data/dbmodel"
-	"keeper/server"
-	"keeper/utils"
+	"minora/data/dbmodel"
+	"minora/server"
+	"minora/utils"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

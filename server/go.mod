@@ -1,4 +1,4 @@
-module keeper
+module minora
 
 go 1.21.5
 

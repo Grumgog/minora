@@ -1,14 +1,5 @@
 basePath: /api
 definitions:
-  main.Sample:
-    properties:
-      id:
-        type: integer
-      login:
-        type: string
-      lorem:
-        type: string
-    type: object
   request.CreateParameterRequest:
     properties:
       isDefault:
@@ -148,15 +139,4 @@ paths:
       summary: Создаёт параметр для редактирования в шаблоне.
       tags:
       - parameter
-  /sample:
-    get:
-      description: return sample data as json.
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/main.Sample'
-      summary: return sample data from server
 swagger: "2.0"

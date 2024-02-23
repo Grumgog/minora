@@ -127,40 +127,9 @@ const docTemplate = `{
                     }
                 }
             }
-        },
-        "/sample": {
-            "get": {
-                "description": "return sample data as json.",
-                "produces": [
-                    "application/json"
-                ],
-                "summary": "return sample data from server",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/main.Sample"
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
-        "main.Sample": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "login": {
-                    "type": "string"
-                },
-                "lorem": {
-                    "type": "string"
-                }
-            }
-        },
         "request.CreateParameterRequest": {
             "type": "object",
             "required": [

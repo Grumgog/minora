@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"keeper/data/request"
-	"keeper/handler"
-	"keeper/utils"
+	"minora/data/request"
+	"minora/handler"
+	"minora/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

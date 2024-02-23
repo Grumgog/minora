@@ -4,7 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
-	"keeper/utils"
+	"minora/utils"
 	"os"
 )
 

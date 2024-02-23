@@ -1,8 +1,8 @@
 package dbcontext
 
 import (
-	"keeper/data/dbmodel"
-	"keeper/server/server_errors"
+	"minora/data/dbmodel"
+	"minora/server/server_errors"
 
 	"gorm.io/gorm"
 )
