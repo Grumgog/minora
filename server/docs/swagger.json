@@ -70,79 +70,9 @@
                     }
                 }
             }
-        },
-        "/parameter": {
-            "get": {
-                "description": "Возвращает массив параметров, предназначеных для использования в шаблонах.",
-                "produces": [
-                    "aplication/json"
-                ],
-                "tags": [
-                    "parameter"
-                ],
-                "summary": "Возвращает все параметры для использования в шаблонах.",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/response.Parameter"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/parameter/new": {
-            "post": {
-                "description": "Создаёт параметр.",
-                "produces": [
-                    "aplication/json"
-                ],
-                "tags": [
-                    "parameter"
-                ],
-                "summary": "Создаёт параметр для редактирования в шаблоне.",
-                "parameters": [
-                    {
-                        "description": "Свойства создаваемого шаблона",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.CreateParameterRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
         }
     },
     "definitions": {
-        "request.CreateParameterRequest": {
-            "type": "object",
-            "required": [
-                "isDefault",
-                "name",
-                "parameterType"
-            ],
-            "properties": {
-                "isDefault": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "parameterType": {
-                    "type": "string"
-                }
-            }
-        },
         "request.LoginRequest": {
             "type": "object",
             "required": [
@@ -173,37 +103,6 @@
                     "type": "string"
                 },
                 "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "response.Parameter": {
-            "type": "object",
-            "required": [
-                "defaultValue",
-                "id",
-                "isDefault",
-                "isSystem",
-                "name",
-                "parameterType"
-            ],
-            "properties": {
-                "defaultValue": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "isDefault": {
-                    "type": "boolean"
-                },
-                "isSystem": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "parameterType": {
                     "type": "string"
                 }
             }
