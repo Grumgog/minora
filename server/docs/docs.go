@@ -121,6 +121,32 @@ const docTemplate = `{
                         "description": "Created"
                     }
                 }
+            },
+            "patch": {
+                "description": "Редактирует информацию о коллекции на сервере.",
+                "produces": [
+                    "aplication/json"
+                ],
+                "tags": [
+                    "collection"
+                ],
+                "summary": "Редактирует коллекцию.",
+                "parameters": [
+                    {
+                        "description": "Параметры создания коллекции",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.UpdateCollectionRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
             }
         },
         "/collection/{id}": {
@@ -173,6 +199,14 @@ const docTemplate = `{
                 },
                 "password": {
                     "type": "string"
+                }
+            }
+        },
+        "request.UpdateCollectionRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
                 }
             }
         },

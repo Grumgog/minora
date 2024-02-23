@@ -6,6 +6,7 @@ import (
 	"minora/routes"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	fiberSwagger "github.com/swaggo/fiber-swagger"
 )
 
@@ -17,8 +18,16 @@ import (
 // @BasePath /api
 func main() {
 	dbcontext.Connect()
-	app := fiber.New()
-	app.Get("/docs/*any", fiberSwagger.WrapHandler)
-	routes.AddRoutes(app)
-	app.Listen(":8080") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	apiApp := fiber.New()
+	apiApp.Use(logger.New(logger.Config{
+		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
+	}))
+	apiApp.Get("/docs/*", fiberSwagger.WrapHandler)
+	routes.AddRoutes(apiApp)
+	go apiApp.Listen("localhost:8080") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+	Apps := fiber.New()
+	Apps.Static("/cms", "/cms")
+	Apps.Static("/", "/site")
+	Apps.Listen("localhost:80")	
 }

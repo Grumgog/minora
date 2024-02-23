@@ -15,6 +15,11 @@ definitions:
     - login
     - password
     type: object
+  request.UpdateCollectionRequest:
+    properties:
+      id:
+        type: integer
+    type: object
   response.CollectionListResponse:
     type: object
   response.GetCollectionResponse:
@@ -87,6 +92,23 @@ paths:
           schema:
             $ref: '#/definitions/response.CollectionListResponse'
       summary: Возвращает список всех коллекций на сервере
+      tags:
+      - collection
+    patch:
+      description: Редактирует информацию о коллекции на сервере.
+      parameters:
+      - description: Параметры создания коллекции
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.UpdateCollectionRequest'
+      produces:
+      - aplication/json
+      responses:
+        "200":
+          description: OK
+      summary: Редактирует коллекцию.
       tags:
       - collection
     post:
