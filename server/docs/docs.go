@@ -95,10 +95,68 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "post": {
+                "description": "Создаёт новую коллекцию на сервере.",
+                "produces": [
+                    "aplication/json"
+                ],
+                "tags": [
+                    "collection"
+                ],
+                "summary": "Создаёт коллекцию на сервере.",
+                "parameters": [
+                    {
+                        "description": "Параметры создания коллекции",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreateCollectionRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        },
+        "/collection/{id}": {
+            "get": {
+                "description": "Возвращает коллекцию на сервере, по id.",
+                "produces": [
+                    "aplication/json"
+                ],
+                "tags": [
+                    "collection"
+                ],
+                "summary": "Возвращает коллекцию на сервере.",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Идентификатор коллекции",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.GetCollectionResponse"
+                        }
+                    }
+                }
             }
         }
     },
     "definitions": {
+        "request.CreateCollectionRequest": {
+            "type": "object"
+        },
         "request.LoginRequest": {
             "type": "object",
             "required": [
@@ -119,6 +177,9 @@ const docTemplate = `{
             }
         },
         "response.CollectionListResponse": {
+            "type": "object"
+        },
+        "response.GetCollectionResponse": {
             "type": "object"
         },
         "response.LoginInfo": {

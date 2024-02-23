@@ -1,5 +1,7 @@
 basePath: /api
 definitions:
+  request.CreateCollectionRequest:
+    type: object
   request.LoginRequest:
     properties:
       isRemember:
@@ -14,6 +16,8 @@ definitions:
     - password
     type: object
   response.CollectionListResponse:
+    type: object
+  response.GetCollectionResponse:
     type: object
   response.LoginInfo:
     properties:
@@ -83,6 +87,42 @@ paths:
           schema:
             $ref: '#/definitions/response.CollectionListResponse'
       summary: Возвращает список всех коллекций на сервере
+      tags:
+      - collection
+    post:
+      description: Создаёт новую коллекцию на сервере.
+      parameters:
+      - description: Параметры создания коллекции
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateCollectionRequest'
+      produces:
+      - aplication/json
+      responses:
+        "201":
+          description: Created
+      summary: Создаёт коллекцию на сервере.
+      tags:
+      - collection
+  /collection/{id}:
+    get:
+      description: Возвращает коллекцию на сервере, по id.
+      parameters:
+      - description: Идентификатор коллекции
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - aplication/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.GetCollectionResponse'
+      summary: Возвращает коллекцию на сервере.
       tags:
       - collection
 swagger: "2.0"
