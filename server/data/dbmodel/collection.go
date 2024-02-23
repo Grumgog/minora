@@ -9,5 +9,4 @@ type Collection struct {
 	AllowWrite   bool
 	IsSystem     bool
 	FieldSet []CollectionField
-	
 }

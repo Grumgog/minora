@@ -13,6 +13,8 @@ definitions:
     - login
     - password
     type: object
+  response.CollectionListResponse:
+    type: object
   response.LoginInfo:
     properties:
       token:
@@ -70,4 +72,17 @@ paths:
       summary: Авторизирует пользователя.
       tags:
       - auth
+  /collection/:
+    get:
+      description: Возвращает список всех коллекций на сервере.
+      produces:
+      - aplication/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.CollectionListResponse'
+      summary: Возвращает список всех коллекций на сервере
+      tags:
+      - collection
 swagger: "2.0"

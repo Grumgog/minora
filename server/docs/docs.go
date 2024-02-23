@@ -76,6 +76,26 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/collection/": {
+            "get": {
+                "description": "Возвращает список всех коллекций на сервере.",
+                "produces": [
+                    "aplication/json"
+                ],
+                "tags": [
+                    "collection"
+                ],
+                "summary": "Возвращает список всех коллекций на сервере",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.CollectionListResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -97,6 +117,9 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
+        },
+        "response.CollectionListResponse": {
+            "type": "object"
         },
         "response.LoginInfo": {
             "type": "object",
