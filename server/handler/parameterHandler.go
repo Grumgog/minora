@@ -13,14 +13,14 @@ func ParameterGetListHandler() ([]response.Parameter, error) {
 	dbParameters, err := db.Parameter.GetParameters()
 
 	if err == nil {
-		return utils.Map(dbParameters, func(v dbmodel.Parameter) response.Parameter {
+		return utils.Map(dbParameters, func(v dbmodel.CollectionItem) response.Parameter {
 			return response.Parameter{
-				ID:            v.ID,
-				Name:          v.Name,
-				ParameterType: v.ParameterType,
-				IsDefault:     v.IsDefault,
-				DefaultValue:  v.DefaultValue,
-				IsSystem:      v.IsSystem,
+				ID: v.ID,
+				// Name:          v.Name,
+				// ParameterType: v.ParameterType,
+				// IsDefault:     v.IsDefault,
+				// DefaultValue:  v.DefaultValue,
+				// IsSystem:      v.IsSystem,
 			}
 		}), nil
 	}
@@ -29,7 +29,7 @@ func ParameterGetListHandler() ([]response.Parameter, error) {
 }
 
 func ParameterCreateHandler(name string, paramType string, isDefault bool) {
-	db := dbcontext.GetDBContext()
+	//db := dbcontext.GetDBContext()
 
-	db.Parameter.AddParameter(name, paramType, isDefault)
+	//db.Parameter.AddParameter(name, paramType, isDefault)
 }

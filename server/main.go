@@ -5,13 +5,9 @@ import (
 	"net/http"
 
 	"keeper/dbcontext"
-	"keeper/routes"
-
 	_ "keeper/docs"
 
 	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // @title keeper cms server
@@ -23,15 +19,21 @@ import (
 func main() {
 	dbcontext.Connect()
 	r := gin.Default()
-	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	routes.AddRoutes(r)
-	r.GET("/ping", func(c *gin.Context) {
+	// r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// routes.AddRoutes(r)
+	r.GET("/api/*any", func(c *gin.Context) {
 		fmt.Println("we can ping!")
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
 		})
 	})
-	r.GET("/api/sample", SampleData)
+	r.GET("/*any", func(c *gin.Context) {
+		fmt.Println("we can ping!")
+		c.JSON(http.StatusOK, gin.H{
+			"message": "pong",
+		})
+	})
+	// r.GET("/api/sample", SampleData)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
 
