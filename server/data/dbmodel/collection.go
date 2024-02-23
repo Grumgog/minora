@@ -7,6 +7,5 @@ type Collection struct {
 	CMSItem
 	ID           uint `gorm:"primaryKey;autoIncrement:true"`
 	AllowWrite   bool
-	IsSystem     bool
 	FieldSet []CollectionField
 }

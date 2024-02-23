@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"minora/handler/collection_handler"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -20,7 +22,8 @@ func AddCollectionRoutes(routeGroup fiber.Router) {
 // @success 200 {object} response.CollectionListResponse
 // @Router /collection/ [get]
 func getCollections(c *fiber.Ctx) error {
-	return nil
+	var result = collection_handler.GetList()
+	return c.JSON(result)
 }
 
 // getCollection godoc

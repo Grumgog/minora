@@ -13,7 +13,7 @@ import (
 type DBContext struct {
 	DB        *gorm.DB
 	User      *UserDBContext
-	Parameter *ParameterDBContext
+	Collection *CollectionDBContext
 }
 
 var dbContext *DBContext = nil
@@ -33,7 +33,7 @@ func createContext(db *gorm.DB) *DBContext {
 	return &DBContext{
 		DB:        db,
 		User:      &UserDBContext{DB: db},
-		Parameter: &ParameterDBContext{DB: db},
+		Collection: &CollectionDBContext{DB: db},
 	}
 }
 

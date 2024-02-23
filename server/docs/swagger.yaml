@@ -21,6 +21,22 @@ definitions:
         type: integer
     type: object
   response.CollectionListResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/response.CollectionValueResponse'
+        type: array
+    type: object
+  response.CollectionValueResponse:
+    properties:
+      allowWrite:
+        type: boolean
+      apiName:
+        type: string
+      displayName:
+        type: string
+      id:
+        type: integer
     type: object
   response.GetCollectionResponse:
     type: object

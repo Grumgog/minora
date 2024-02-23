@@ -211,7 +211,32 @@ const docTemplate = `{
             }
         },
         "response.CollectionListResponse": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.CollectionValueResponse"
+                    }
+                }
+            }
+        },
+        "response.CollectionValueResponse": {
+            "type": "object",
+            "properties": {
+                "allowWrite": {
+                    "type": "boolean"
+                },
+                "apiName": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
         },
         "response.GetCollectionResponse": {
             "type": "object"

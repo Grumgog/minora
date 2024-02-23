@@ -21,7 +21,7 @@ func (context *UserDBContext) GetUserByLogin(login string) (*dbmodel.User, error
 	}
 	state := context.DB.First(&user)
 	if state.RowsAffected == 0 {
-		return nil, errors.New("No such user")
+		return nil, errors.New("no such user")
 	}
 
 	return &user, nil

@@ -1,6 +1,6 @@
 package dbmodel
 
 type CMSItem struct {
-	ApiName     string
-	DisplayName string
+	ApiName     string `json:"apiName"`
+	DisplayName string `json:"displayName"`
 }
