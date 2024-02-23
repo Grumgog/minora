@@ -10,7 +10,7 @@ import (
 	fiberSwagger "github.com/swaggo/fiber-swagger"
 )
 
-// @title keeper cms server
+// @title MinoraCMS server
 // @version 0.1
 // @description CMS с сервером на языке программирования GO
 
