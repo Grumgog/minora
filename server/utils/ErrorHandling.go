@@ -3,12 +3,18 @@ package utils
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
 )
 
-func HandleErrorWithInternalServerError(c *gin.Context, err error) {
+func HandleErrorWithInternalServerError(c *fiber.Ctx, err error) {
 	if err != nil {
-		c.AbortWithStatus(http.StatusInternalServerError)
+		c.Status(http.StatusInternalServerError).SendString(err.Error())
+	}
+}
+
+func ResponseWithError(c *fiber.Ctx, statusCode int, err error) {
+	if err != nil {
+		c.Status(statusCode).SendString(err.Error())
 	}
 }
 

@@ -2,6 +2,9 @@ package routes
 
 import (
 	"minora/handler/collection_handler"
+	"minora/server/server_errors"
+	"minora/utils"
+	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -22,7 +25,7 @@ func AddCollectionRoutes(routeGroup fiber.Router) {
 // @success 200 {object} response.CollectionListResponse
 // @Router /collection/ [get]
 func getCollections(c *fiber.Ctx) error {
-	var result = collection_handler.GetList()
+	result := collection_handler.GetList()
 	return c.JSON(result)
 }
 
@@ -33,9 +36,17 @@ func getCollections(c *fiber.Ctx) error {
 // @Param id path int true "Идентификатор коллекции"
 // @produce aplication/json
 // @success 200 {object} response.GetCollectionResponse
+// @success 404
 // @Router /collection/{id} [get]
 func getCollectionById(c *fiber.Ctx) error {
-	return nil
+	id, error := c.ParamsInt("id")
+	utils.ResponseWithError(c, http.StatusBadRequest, error)
+	result, err := collection_handler.GetById(uint(id))
+	if err != nil {
+		errInfo := server_errors.HandleServerError(c, err)
+		return c.Status(errInfo.StatusCode).SendString(errInfo.Error.Error())
+	}
+	return c.JSON(result)
 }
 
 // createCollections godoc

@@ -25,3 +25,26 @@ func GetList() response.CollectionListResponse {
 		Items: result,
 	}
 }
+
+func GetById(id uint) (*response.GetCollectionResponse, error) {
+	db := dbcontext.GetDBContext()
+	collection, err := db.Collection.GetById(id)
+	
+	if err != nil {
+		return nil, err
+	}	
+	return &response.GetCollectionResponse{
+		CMSItem: dbmodel.CMSItem{ApiName: collection.ApiName, DisplayName: collection.DisplayName},
+		ID: collection.ID,
+		AllowWrite: collection.AllowWrite,
+		FieldSet: utils.Map(collection.FieldSet, func(field dbmodel.CollectionField) response.FieldSetResponse {
+			return response.FieldSetResponse{
+				CMSItem: field.CMSItem,
+				ID: field.ID,
+				Type: field.Type,
+				DefaultValue: field.DefaultValue,
+				CollectionId: field.CollectionID,
+			}
+		}),
+	}, nil
+}

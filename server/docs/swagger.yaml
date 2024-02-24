@@ -38,7 +38,35 @@ definitions:
       id:
         type: integer
     type: object
+  response.FieldSetResponse:
+    properties:
+      apiName:
+        type: string
+      collectionId:
+        type: integer
+      defaultValue:
+        type: string
+      displayName:
+        type: string
+      id:
+        type: integer
+      type:
+        type: string
+    type: object
   response.GetCollectionResponse:
+    properties:
+      allowWrite:
+        type: boolean
+      apiName:
+        type: string
+      displayName:
+        type: string
+      fieldSet:
+        items:
+          $ref: '#/definitions/response.FieldSetResponse'
+        type: array
+      id:
+        type: integer
     type: object
   response.LoginInfo:
     properties:
@@ -160,6 +188,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/response.GetCollectionResponse'
+        "404":
+          description: Not Found
       summary: Возвращает коллекцию на сервере.
       tags:
       - collection

@@ -174,6 +174,9 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/response.GetCollectionResponse"
                         }
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
                 }
             }
@@ -238,8 +241,51 @@ const docTemplate = `{
                 }
             }
         },
+        "response.FieldSetResponse": {
+            "type": "object",
+            "properties": {
+                "apiName": {
+                    "type": "string"
+                },
+                "collectionId": {
+                    "type": "integer"
+                },
+                "defaultValue": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
         "response.GetCollectionResponse": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "allowWrite": {
+                    "type": "boolean"
+                },
+                "apiName": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "fieldSet": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.FieldSetResponse"
+                    }
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
         },
         "response.LoginInfo": {
             "type": "object",

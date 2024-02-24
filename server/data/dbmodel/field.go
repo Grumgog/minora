@@ -7,6 +7,5 @@ type CollectionField struct {
 	CMSItem
 	Type string
 	DefaultValue  string
-	IsSystem      bool
 	CollectionID uint
 }
